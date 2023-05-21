@@ -8,6 +8,7 @@ class ItemSliderWidget extends StatelessWidget {
     return Container(
       height: height * 0.18,
       width: width * 0.56,
+      margin: const EdgeInsets.only(right: 16.0),
       decoration: BoxDecoration(
         color: Colors.black12,
         borderRadius: BorderRadius.circular(12.0),

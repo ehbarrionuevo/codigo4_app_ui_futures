@@ -190,6 +190,9 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 16.0,
+                ),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
