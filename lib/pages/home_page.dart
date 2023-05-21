@@ -1,7 +1,10 @@
+import 'package:codigo4_app_ui_future/data/fake_data.dart';
 import 'package:codigo4_app_ui_future/widgets/item_slider_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
+  FakeData data = FakeData();
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -193,16 +196,26 @@ class HomePage extends StatelessWidget {
                 const SizedBox(
                   height: 16.0,
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ItemSliderWidget(),
-                      ItemSliderWidget(),
-                      ItemSliderWidget(),
-                      ItemSliderWidget(),
-                    ],
-                  ),
+                FutureBuilder(
+                  future: data.getPlaces(),
+                  builder: (BuildContext context, AsyncSnapshot snap) {
+                    if (snap.hasData) {
+                      print(snap.data);
+                      return SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            ItemSliderWidget(),
+                            ItemSliderWidget(),
+                            ItemSliderWidget(),
+                            ItemSliderWidget(),
+                          ],
+                        ),
+                      );
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  },
                 ),
               ],
             ),
